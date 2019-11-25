@@ -6,7 +6,7 @@ contract("Exams", async accounts => {
         assert.equal("0", "0", "LOGICAL!")
     });
 
-       it("should keep the contract owner", async () => {
+    it("should keep the contract owner", async () => {
        let instance = await Exam.deployed();
        let address = await instance.getContractOwner.call({from: accounts[0]});
        // console.log(address);
@@ -18,6 +18,17 @@ contract("Exams", async accounts => {
         let hash_test = "fB03aA5E2E71De1470ae2";
         let instance = await Exam.deployed();
         let hash = instance.addExam().call(hash_test, {from: accounts[0]});
-        assert.equal(hash.valueOf(), hash_test, "Not returning the correct address")
-    })
+        assert.equal(hash.valueOf(), hash_test, "Not returning the correct address");
+
+        let is_owner = instance.isOwner(hash_test, {from: accounts[0]});
+        assert.equal(hash.valueOf(), "true", "Not recognizing hash correctly");
+
+        let is_not_owner = instance.isOwner("anotherhashabc123", {from: accounts[0]});
+        assert.equal(hash.valueOf(), "false", "Not recognizing hash correctly");
+    });
+
+    it("Should add an student address to the people that passed the exam", async () => {
+       let student_address = "STUD3NT4ADD5E88ST3ST";
+       let
+    });
    });

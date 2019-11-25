@@ -40,13 +40,13 @@ contract Exams {
         }
     }
     
-    function studentAddExam(string memory hash) public view returns (bool){
+    function studentAddExam(string memory hash) public view returns (string memory studentHash){
         // Receives a student's address and adds it to the people that passed that exam
         // Only the creator of the exam can do this
         string memory professorsExamHash = professorsExam[msg.sender];  // The hash of the exam owned by msg.sender
-        Exam storage examObj = examHash[professorsExamHash];
-        bool studentPassedExam = examObj.examSuccess[hash];
-        return (studentPassedExam);
+        Exam storage examObj = examHash[professorsExamHash];  // Get the correct Exam struct
+        examObj.examSuccess[hash] = true;  // updates the examSuccess mapping with the student hash pointing to true
+        return (hash);
     }
 }
 
