@@ -28,11 +28,12 @@ contract("Exams", async accounts => {
     });
 
     it("Should add an student address to the people that passed the exam", async () => {
-       let student_address = "STUD3NT4ADD5E88ST3ST";
-       let instance = await Exam.deployed();
-       let hash = instance.addStudentExam(student_address, {from: accounts[0]});
-       assert.equal(hash.valueOf(), student_address, "There was a problem saving the student's exam")
+        let student_address = "STUD3NT4ADD5E88ST3ST";
+        let instance = await Exam.deployed();
+        let hash = instance.addStudentExam(student_address, {from: accounts[0]});
+        assert.equal(hash.valueOf(), student_address, "There was a problem saving the student's exam");
 
-        // should test checkStudentExam function
+        let check_hash = instance.checkStudentExam();
+
     });
    });
