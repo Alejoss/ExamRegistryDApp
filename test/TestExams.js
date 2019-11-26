@@ -33,6 +33,6 @@ contract("Exams", async accounts => {
        let hash = instance.addStudentExam(student_address, {from: accounts[0]});
        assert.equal(hash.valueOf(), student_address, "There was a problem saving the student's exam")
 
-
+        // should test checkStudentExam function
     });
    });
