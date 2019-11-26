@@ -4,7 +4,6 @@ pragma solidity >=0.4.22 <0.6.0;
 contract Exams {
     
     address contractOwner;
-    string examsFinalHash;
     mapping(address => string) professorsExam;
     
     struct Exam {
