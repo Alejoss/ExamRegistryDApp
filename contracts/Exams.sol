@@ -40,7 +40,11 @@ contract Exams {
         }
     }
 
-    function studentAddExam(address studentAddress) public returns (string memory onestring){
+    function getProfessorsExam() public view returns (string memory examProfessorHash){
+        return professorsExam[msg.sender];
+    }
+
+    function studentAddExam(address studentAddress) public returns (string memory returnString){
         // Receives a student's address and adds it to the people that passed that exam
         // Only the creator of the exam can do this
         string memory professorsExamHash = professorsExam[msg.sender];  // The hash of the exam owned by msg.sender
