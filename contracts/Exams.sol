@@ -8,7 +8,7 @@ contract Exams {
     mapping(address => string) professorsExam;
 
     struct Exam {
-        mapping(string => bool) examSuccess;
+        mapping(address => bool) examSuccess;
     }
 
     mapping(string => Exam) examHash;
@@ -40,12 +40,19 @@ contract Exams {
         }
     }
 
-    function studentAddExam(string memory hash) public view returns (bool){
+    function studentAddExam(address studentAddress) public returns (string memory onestring){
         // Receives a student's address and adds it to the people that passed that exam
         // Only the creator of the exam can do this
         string memory professorsExamHash = professorsExam[msg.sender];  // The hash of the exam owned by msg.sender
         Exam storage examObj = examHash[professorsExamHash];
-        bool studentPassedExam = examObj.examSuccess[hash];
+        examObj.examSuccess[studentAddress] = true;
+        return professorsExamHash;
+    }
+
+    function checkStudentPassedExam(string memory examProfessorHash) public view returns (bool){
+        // Checks if the msg.sender passed the exam from the examProfessorHash
+        Exam storage examObj = examHash[examProfessorHash];
+        bool studentPassedExam = examObj.examSuccess[msg.sender];
         return (studentPassedExam);
     }
 }
