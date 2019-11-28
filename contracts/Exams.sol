@@ -28,7 +28,7 @@ contract Exams {
         // save the exam hash and link it with the professors address
         professorsExam[msg.sender] = hash;
 
-        return professorsExam[msg.sender];  // TODO this works but returns 0
+        return professorsExam[msg.sender];
     }
 
     function isOwner(string memory hash) public view returns (bool) {
