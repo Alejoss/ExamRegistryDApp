@@ -12,10 +12,12 @@ contract("Exams", accounts => {
             .then(instance => instance.addExam(hash_test, {from: accounts[0]}))
             .then(hash => {
                 assert.equal(hash.valueOf(), hash_test, "Not returning the correct address");
+                console.log("THIS");
             })
             .then(instance => instance.isOwner(hash_test, {from: accounts[0]}))
             .then(isOwner => {
-                assert.equal(isOwner, "true", "Not recognizing hash correctly")
+                assert.equal(isOwner, "true", "Not recognizing hash correctly");
+                // assert.equal("true", "false", "NOT WORKING AT ALL");
             })
             .then(instance => instance.isOwner("THISISWRONG", {from: accounts[0]}))
             .then(isOwner => {
@@ -29,11 +31,14 @@ contract("Exams", accounts => {
         Exam.deployed()
             .then(instance => instance.getProfessorsExam({from: accounts[0]}))
             .then(examProfessorHash => {
-                examPHash = examProfessorHash
+                examPHash = examProfessorHash;
+                console.log("THAT");
             })
             .then(instance => instance.studentAddExam(student_address, {from: accounts[0]}))
             .then(examProfessorHash2 => {
-                assert.equal(examPHash, examProfessorHash2, "There was a problem saving the student's exam")
+                console.log("examProfessorHash2");
+                console.log(examProfessorHash2);
+                assert.equal("examPHash", examProfessorHash2, "There was a problem saving the student's exam")
             })
             .then(instance => instance.checkStudentPassedExam(examPHash, {from: student_address}))
             .then(studentPassedExam => {

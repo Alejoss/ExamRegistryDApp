@@ -13,7 +13,6 @@ contract Exams {
 
     mapping(string => Exam) examHash;
 
-
     constructor () public {
         contractOwner = msg.sender;
     }
