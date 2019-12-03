@@ -23,11 +23,9 @@ contract Exams {
     }
 
 
-    function addExam(string memory hash) public returns (string memory examProfessorHash) {
+    function addExam(string memory hash) public {
         // save the exam hash and link it with the professors address
         professorsExam[msg.sender] = hash;
-
-        return professorsExam[msg.sender];
     }
 
     function isOwner(string memory hash) public view returns (bool) {
@@ -39,11 +37,11 @@ contract Exams {
         }
     }
 
-    function getProfessorsExam() public view returns (string memory examProfessorHash){
+    function getProfessorsExam() public view returns (string memory){
         return professorsExam[msg.sender];
     }
 
-    function studentAddExam(address studentAddress) public returns (string memory returnString){
+    function studentAddExam(address studentAddress) public returns (string memory){
         // Receives a student's address and adds it to the people that passed that exam
         // Only the creator of the exam can do this
         string memory professorsExamHash = professorsExam[msg.sender];  // The hash of the exam owned by msg.sender
