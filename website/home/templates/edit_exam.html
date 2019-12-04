@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ExamRegistry</title>
+    <link rel="stylesheet" type="text/css"
+      href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css">
+</head>
+<body>
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="navbar-toggler-icon"></span>
+				</button> <a class="navbar-brand" href="{% url 'home' %}">Professors</a>
+                <ul class="navbar-nav ml-md-auto">
+                    <li class="nav-item active">
+                        {% if user.is_authenticated %}
+                            <a class="nav-link" href="#">{{ user.username }} <span class="sr-only">(current)</span></a>
+                        {% else %}
+                            <a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
+                        {% endif %}
+                    </li>
+                <li class="nav-item active">
+                    {% if user.is_authenticated %}
+                        <a class="nav-link" href="#">Edit Exam</a>
+                    {% endif %}
+                </li>
+                </ul>
+			</nav>
+        </div>
+
+        <div class="col-md-12">
+            <form role="form" action="{% url 'edit_exam' %}" method="post">{% csrf_token %}
+				<div class="form-group">
+					<label for="question1">
+						Question 1
+					</label>
+					<input class="form-control" name="question1" id="question1" value="{{ exam.q1 }}" />
+				</div>
+                <div class="form-group">
+					<label for="question2">
+						Question 2
+					</label>
+					<input class="form-control" name="question2" id="question2" value="{{ exam.q2 }}" />
+				</div>
+                <div class="form-group">
+					<label for="question3">
+						Question 3
+					</label>
+					<input class="form-control" name="question3" id="question3" value="{{ exam.q3 }}"/>
+				</div>
+                <div class="form-group">
+					<label for="question4">
+						Question 4
+					</label>
+					<input class="form-control" name="question4" id="question4" value="{{ exam.q4 }}"/>
+				</div>
+                <div class="form-group">
+					<label for="question5">
+						Question 5
+					</label>
+					<input class="form-control" name="question5" id="question5" value="{{ exam.q5 }}"/>
+				</div>
+                <div class="form-group">
+					<label for="question6">
+						Question 6
+					</label>
+					<input class="form-control" name="question6" id="question6" value="{{ exam.q6 }}"/>
+				</div>
+                <div class="form-group">
+					<label for="question7">
+						Question 7
+					</label>
+					<input class="form-control" name="question7" id="question7" value="{{ exam.q7 }}"/>
+				</div>
+                <div class="form-group">
+					<label for="question8">
+						Question 8
+					</label>
+					<input class="form-control" name="question8" id="question8" value="{{ exam.q8 }}"/>
+				</div>
+                <div class="form-group">
+					<label for="question9">
+						Question 9
+					</label>
+					<input class="form-control" name="question9" id="question9" value="{{ exam.q9 }}"/>
+				</div>
+                <div class="form-group">
+					<label for="question10">
+						Question 10
+					</label>
+					<input class="form-control" name="question10" id="question10" value="{{ exam.q10 }}"/>
+				</div>
+                <button type="submit" class="btn btn-primary">
+					Submit
+				</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ExamRegistry</title>
+    <link rel="stylesheet" type="text/css"
+      href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css">
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="navbar-toggler-icon"></span>
+                </button> <a class="navbar-brand" href="{% url 'home' %}">Professors</a>
+                <ul class="navbar-nav ml-md-auto">
+                    <li class="nav-item active">
+                        {% if user.is_authenticated %}
+                            <a class="nav-link" href="#">{{ user.username }} <span class="sr-only">(current)</span></a>
+                        {% else %}
+                            <a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
+                        {% endif %}
+                    </li>
+                <li class="nav-item active">
+                    {% if user.is_authenticated %}
+                        <a class="nav-link" href="{% url 'edit_exam' %}">Edit Exam</a>
+                    {% endif %}
+                </li>
+                </ul>
+            </nav>
+			<div id="card-195596">
+				<div class="card">
+					<div class="card-header">
+						 <p>
+                             {{ professor.user.username }} - {{ exam.hash }}
+                         </p>
+					</div>
+					<div id="card-element-562936" class="collapse show">
+						<div class="card-body">
+							<ul>
+                                <li>{{ exam.q1 }} </li>
+                                <li>{{ exam.q2 }} </li>
+                                <li>{{ exam.q3 }} </li>
+                                <li>{{ exam.q4 }} </li>
+                                <li>{{ exam.q5 }} </li>
+                                <li>{{ exam.q6 }} </li>
+                                <li>{{ exam.q7 }} </li>
+                                <li>{{ exam.q8 }} </li>
+                                <li>{{ exam.q9 }} </li>
+                                <li>{{ exam.q10 }} </li>
+                            </ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
