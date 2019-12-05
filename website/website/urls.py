@@ -22,5 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name="home"),
     path('exams/<int:exam_id>/', views.exams_index, name="exams"),
-    path('edit_exam', views.edit_exam, name="edit_exam"),
+    path('edit_exam/', views.edit_exam, name="edit_exam"),
+    path('add_student/', views.add_student, name="add_student"),
+    path('check_student_passed/', views.check_student_passed, name="check_student_passed"),
+    path('test_contract/', views.test_contract, name="test_contract"),
 ]
