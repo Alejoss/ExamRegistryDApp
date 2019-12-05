@@ -83,15 +83,24 @@ def add_student(request):
         student_address = request.POST.get("student_address")
         # Send student address to the blockchain
         w3, contract = setup_conection()
-        tx_hash = contract.functions.studentAddExam(student_address).transact()
-        print(tx_hash)
+        contract.functions.studentAddExam(student_address).transact()
+        return HttpResponse("Student Added to the clever ones that passed the exam")
     else:
         context = {"exam": professor.exam}
         return render(request, template, context)
 
 
-def check_student_passed(request):
-    pass
+def check_student_passed(request):  # TODO test this
+    template = "check_student_passed.html"
+    if request.method == "POST":
+        student_address = request.POST.get("student_address")
+        # Send student address to the blockchain
+        w3, contract = setup_conection()
+        student_passed_exam = contract.functions.checkStudentPassedExam(student_address).call()
+        return HttpResponse(student_passed_exam)
+    else:
+        return render(request, template, {})
+
 
 def test_contract(request):
     w3 = Web3(HTTPProvider('http://127.0.0.1:7545'))

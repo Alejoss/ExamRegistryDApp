@@ -50,10 +50,11 @@ contract Exams {
         return professorsExamHash;
     }
 
-    function checkStudentPassedExam(string memory examProfessorHash) public view returns (bool){
-        // Checks if the msg.sender passed the exam from the examProfessorHash
-        Exam storage examObj = examHash[examProfessorHash];
-        bool studentPassedExam = examObj.examSuccess[msg.sender];
+    function checkStudentPassedExam(address studentAddress) public view returns (bool){
+        // Checks if the studentAddress passed the exam from the professor (msg.sender)
+        string memory professorsExamHash = professorsExam[msg.sender];  // The hash of the exam owned by msg.sender
+        Exam storage examObj = examHash[professorsExamHash];
+        bool studentPassedExam = examObj.examSuccess[studentAddress];
         return (studentPassedExam);
     }
 }
